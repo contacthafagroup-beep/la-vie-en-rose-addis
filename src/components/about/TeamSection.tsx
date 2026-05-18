@@ -69,7 +69,7 @@ export default function TeamSection() {
             >
               <div className="relative w-48 h-48 mx-auto mb-6 overflow-hidden rounded-full shadow-2xl">
                 <div
-                  className="w-full h-full transition-transform duration-500 group-hover:scale-110"
+                  className="w-full h-full img-scale-inner"
                   style={{
                     backgroundImage: `url('${member.image}')`,
                     backgroundSize: "cover",

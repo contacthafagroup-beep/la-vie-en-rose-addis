@@ -67,11 +67,18 @@ export default function WhatsAppButton() {
       >
         <motion.span
           className="absolute inset-0 rounded-full"
-          style={{ background: "#25D366" }}
-          animate={{ scale: [1, 1.4, 1], opacity: [0.6, 0, 0.6] }}
-          transition={{ duration: 2, repeat: Infinity }}
+          style={{
+            background: "#25D366",
+            animation: "whatsappPulse 2s ease-out infinite",
+          }}
           aria-hidden="true"
         />
+        <style>{`
+          @keyframes whatsappPulse {
+            0% { transform: scale(1); opacity: 0.6; }
+            100% { transform: scale(1.5); opacity: 0; }
+          }
+        `}</style>
         <MessageCircle size={26} color="white" fill="white" aria-hidden="true" />
       </motion.button>
     </div>

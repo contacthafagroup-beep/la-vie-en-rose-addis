@@ -82,12 +82,12 @@ export default function HeroSection() {
           />
         ))}
 
-        {/* Floating particles — desktop only, they cause jank on mobile */}
+        {/* Floating particles — desktop only */}
         {isDesktop &&
           [...Array(6)].map((_, i) => (
             <motion.div
               key={i}
-              className="absolute rounded-full hidden md:block"
+              className="absolute rounded-full"
               style={{
                 width: "3px",
                 height: "3px",
@@ -250,9 +250,18 @@ export default function HeroSection() {
         >
           Scroll
         </span>
-        <motion.div animate={{ y: [0, 8, 0] }} transition={{ duration: 1.5, repeat: Infinity }}>
-          <ChevronDown size={20} className="text-[#D4A017]" />
-        </motion.div>
+        {/* CSS animation instead of Framer Motion repeat:Infinity — no JS overhead */}
+        <ChevronDown
+          size={20}
+          className="text-[#D4A017]"
+          style={{ animation: "scrollBounce 1.5s ease-in-out infinite" }}
+        />
+        <style>{`
+          @keyframes scrollBounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(8px); }
+          }
+        `}</style>
       </motion.div>
     </section>
   );

@@ -1,4 +1,4 @@
-/* ─── Tailwind v4 base — must be first ─────────────────────────────────────── */
+/* ─── Tailwind v4 base ───────────────────────────────────────────────────────── */
 @import "tailwindcss";
 
 /* ─── Design tokens ─────────────────────────────────────────────────────────── */
@@ -18,73 +18,84 @@
 
 /* ─── Tailwind theme extension ───────────────────────────────────────────────── */
 @theme inline {
-  --color-rose:         var(--rose);
-  --color-rose-light:   var(--rose-light);
-  --color-rose-dark:    var(--rose-dark);
-  --color-cream:        var(--cream);
-  --color-cream-dark:   var(--cream-dark);
-  --color-luxury-black: var(--black);
-  --color-gold:         var(--gold);
-  --color-gold-light:   var(--gold-light);
-  --color-espresso:     var(--espresso);
+  --color-rose:           var(--rose);
+  --color-rose-light:     var(--rose-light);
+  --color-rose-dark:      var(--rose-dark);
+  --color-cream:          var(--cream);
+  --color-cream-dark:     var(--cream-dark);
+  --color-luxury-black:   var(--black);
+  --color-gold:           var(--gold);
+  --color-gold-light:     var(--gold-light);
+  --color-espresso:       var(--espresso);
   --color-espresso-light: var(--espresso-light);
 }
 
-/* ─── Base styles (no duplicate reset — Tailwind Preflight handles it) ───────── */
+/* ─── Base ───────────────────────────────────────────────────────────────────── */
 html {
   scroll-behavior: smooth;
+  /* Prevent iOS momentum scroll from causing layout shifts */
+  -webkit-overflow-scrolling: touch;
 }
 
 body {
   background-color: var(--cream);
   color: var(--black);
   overflow-x: hidden;
-  /* Font is set via next/font in layout — do NOT set font-family here */
-  /* antialiased class on <body> handles font smoothing */
 }
 
-/* ─── Custom scrollbar ───────────────────────────────────────────────────────── */
-::-webkit-scrollbar       { width: 6px; }
-::-webkit-scrollbar-track { background: var(--cream); }
-::-webkit-scrollbar-thumb { background: var(--rose); border-radius: 3px; }
-::-webkit-scrollbar-thumb:hover { background: var(--rose-dark); }
+/* ─── Custom scrollbar (desktop only) ───────────────────────────────────────── */
+@media (hover: hover) and (pointer: fine) {
+  ::-webkit-scrollbar       { width: 6px; }
+  ::-webkit-scrollbar-track { background: var(--cream); }
+  ::-webkit-scrollbar-thumb { background: var(--rose); border-radius: 3px; }
+  ::-webkit-scrollbar-thumb:hover { background: var(--rose-dark); }
+}
 
 /* ─── Text selection ─────────────────────────────────────────────────────────── */
 ::selection { background: var(--rose); color: var(--white); }
 
-/* ─── Font family utilities — use CSS vars injected by next/font ─────────────── */
-.font-playfair  { font-family: var(--font-playfair),  Georgia, serif; }
-.font-cormorant { font-family: var(--font-cormorant), Georgia, serif; }
-.font-montserrat{ font-family: var(--font-montserrat), system-ui, sans-serif; }
-.font-script    { font-family: var(--font-script), cursive; }
+/* ─── Font utilities ─────────────────────────────────────────────────────────── */
+.font-playfair   { font-family: var(--font-playfair),   Georgia, serif; }
+.font-cormorant  { font-family: var(--font-cormorant),  Georgia, serif; }
+.font-montserrat { font-family: var(--font-montserrat), system-ui, sans-serif; }
+.font-script     { font-family: var(--font-script), cursive; }
 
 /* ─── Color utilities ────────────────────────────────────────────────────────── */
-.text-rose        { color: var(--rose); }
-.text-gold        { color: var(--gold); }
-.text-cream       { color: var(--cream); }
-.text-espresso    { color: var(--espresso); }
-.bg-rose          { background-color: var(--rose); }
-.bg-gold          { background-color: var(--gold); }
-.bg-cream         { background-color: var(--cream); }
-.bg-espresso      { background-color: var(--espresso); }
-.bg-luxury-black  { background-color: var(--black); }
+.text-rose       { color: var(--rose); }
+.text-gold       { color: var(--gold); }
+.text-cream      { color: var(--cream); }
+.text-espresso   { color: var(--espresso); }
+.bg-rose         { background-color: var(--rose); }
+.bg-gold         { background-color: var(--gold); }
+.bg-cream        { background-color: var(--cream); }
+.bg-espresso     { background-color: var(--espresso); }
+.bg-luxury-black { background-color: var(--black); }
 
 /* ─── Glassmorphism ──────────────────────────────────────────────────────────── */
+/* Desktop: real blur. Mobile: solid fallback — blur causes scroll jank.         */
 .glass {
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  background: rgba(255, 255, 255, 0.92);
   border: 1px solid rgba(255, 255, 255, 0.2);
 }
 .glass-dark {
-  background: rgba(28, 28, 28, 0.92);
+  background: rgba(28, 28, 28, 0.95);
   border: 1px solid rgba(255, 255, 255, 0.1);
 }
 .glass-rose {
-  background: rgba(212, 106, 126, 0.15);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  background: rgba(212, 106, 126, 0.92);
   border: 1px solid rgba(212, 106, 126, 0.3);
+}
+@media (hover: hover) and (pointer: fine) {
+  .glass {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+  }
+  .glass-rose {
+    background: rgba(212, 106, 126, 0.15);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+  }
 }
 
 /* ─── Gradient text ──────────────────────────────────────────────────────────── */
@@ -144,7 +155,7 @@ body {
 @media (max-width: 640px)  { .masonry-grid { columns: 1; } }
 .masonry-item { break-inside: avoid; margin-bottom: 1rem; }
 
-/* ─── Animations ─────────────────────────────────────────────────────────────── */
+/* ─── Keyframe animations ────────────────────────────────────────────────────── */
 @keyframes float {
   0%, 100% { transform: translateY(0px); }
   50%       { transform: translateY(-10px); }
@@ -167,29 +178,62 @@ body {
 }
 .pulse-glow { animation: pulse-glow 2s ease-in-out infinite; }
 
-/* ─── Mobile scroll performance ─────────────────────────────────────────────── */
-/* Promote animated sections to their own GPU compositing layer.                 */
-/* This prevents blur/ghosting/jank during scroll on iOS and Android.            */
-section {
-  transform: translateZ(0);
-  -webkit-transform: translateZ(0);
+/* ─── bg-fixed-safe: parallax only on desktop ───────────────────────────────── */
+.bg-fixed-safe { background-attachment: scroll; }
+@media (hover: hover) and (pointer: fine) {
+  .bg-fixed-safe { background-attachment: fixed; }
 }
 
-/* Disable backdrop-filter on touch devices — it causes scroll jank on mobile   */
+/* ─── Mobile performance — the key rules ────────────────────────────────────── */
+
+/* 1. Disable ALL CSS transitions on touch devices during scroll.
+      hover:scale-* and group-hover:scale-* only fire on hover anyway,
+      but the transition property itself still creates compositing layers.       */
 @media (hover: none) and (pointer: coarse) {
-  .glass, .glass-rose {
-    backdrop-filter: none;
-    -webkit-backdrop-filter: none;
-    background: rgba(28, 28, 28, 0.88);
+  * {
+    /* Replace transition-all (which animates layout props) with
+       transform+opacity only — safe for GPU compositing                         */
+    transition-property: transform, opacity, color, background-color, border-color, box-shadow !important;
+  }
+
+  /* Disable image zoom on card hover — not needed on touch */
+  .group:active .group-hover\:scale-110,
+  .group:active .group-hover\:scale-105 {
+    transform: none !important;
+  }
+
+  /* Stop infinite background animations — they run every frame */
+  .animate-float,
+  .pulse-glow,
+  .shimmer {
+    animation: none !important;
   }
 }
-/* Use a utility class instead of inline style for parallax backgrounds          */
-.bg-fixed-safe {
-  background-attachment: scroll; /* safe default for all devices */
+
+/* 2. Image containers: use transform instead of scale for GPU compositing       */
+.img-zoom-container {
+  overflow: hidden;
+}
+.img-zoom-container img,
+.img-zoom-container > div {
+  transition: transform 0.6s ease;
+  will-change: transform;
 }
 @media (hover: hover) and (pointer: fine) {
-  /* Only enable fixed attachment on real desktop (mouse) devices */
-  .bg-fixed-safe {
-    background-attachment: fixed;
+  .img-zoom-container:hover img,
+  .img-zoom-container:hover > div {
+    transform: scale(1.08);
+  }
+}
+
+/* ─── Image hover zoom — GPU-composited, touch-safe ─────────────────────────── */
+.img-scale-inner {
+  transform: translateZ(0);
+  will-change: transform;
+  transition: transform 0.6s ease;
+}
+@media (hover: hover) and (pointer: fine) {
+  .group:hover .img-scale-inner {
+    transform: scale(1.08) translateZ(0);
   }
 }

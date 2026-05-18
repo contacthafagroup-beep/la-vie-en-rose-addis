@@ -54,7 +54,7 @@ export default function AtmosphereSection() {
             >
               <div className="relative h-72 overflow-hidden">
                 <div
-                  className="w-full h-full transition-transform duration-700 group-hover:scale-110"
+                  className="w-full h-full img-scale-inner"
                   style={{
                     backgroundImage: `url('${item.image}')`,
                     backgroundSize: "cover",

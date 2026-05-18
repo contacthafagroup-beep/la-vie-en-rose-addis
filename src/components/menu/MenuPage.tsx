@@ -210,7 +210,7 @@ export default function MenuPage() {
                         {/* Image */}
                         <div className="relative h-44 overflow-hidden">
                           <div
-                            className="w-full h-full transition-transform duration-700 group-hover:scale-110"
+                            className="w-full h-full img-scale-inner"
                             style={{ backgroundImage: `url('${item.image}')`, backgroundSize: "cover", backgroundPosition: "center" }}
                             role="img"
                             aria-label={item.name}
