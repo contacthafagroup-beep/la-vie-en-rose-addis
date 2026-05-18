@@ -6,6 +6,7 @@ import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import LoadingScreen from "@/components/LoadingScreen";
 import PageTransition from "@/components/PageTransition";
+import MobileMotionDisabler from "@/components/MobileMotionDisabler";
 
 /* ─── Font definitions — loaded at build time, no external request needed ─── */
 const playfair = Playfair_Display({
@@ -91,6 +92,7 @@ export default function RootLayout({
         }}
       >
         <LoadingScreen />
+        <MobileMotionDisabler />
         <Navbar />
         <main>
           <PageTransition>{children}</PageTransition>

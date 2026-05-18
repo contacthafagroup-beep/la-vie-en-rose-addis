@@ -178,7 +178,25 @@ body {
 }
 .pulse-glow { animation: pulse-glow 2s ease-in-out infinite; }
 
-/* ─── bg-fixed-safe: parallax only on desktop ───────────────────────────────── */
+/* ─── Disable ALL Framer Motion scroll animations on touch devices ───────────── */
+/* This targets every motion.div that uses opacity/transform transitions.        */
+/* On mobile, whileInView fires 166 times as user scrolls = constant repaints.  */
+@media (hover: none) and (pointer: coarse) {
+  /* Force all animated elements to their final visible state immediately */
+  [data-framer-motion-reduced] * {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+    animation: none !important;
+  }
+}
+
+/* Simpler: target the body class we'll add on mobile */
+body.touch-device .motion-safe-only {
+  opacity: 1 !important;
+  transform: none !important;
+  transition: color 0.2s, background-color 0.2s !important;
+}
 .bg-fixed-safe { background-attachment: scroll; }
 @media (hover: hover) and (pointer: fine) {
   .bg-fixed-safe { background-attachment: fixed; }

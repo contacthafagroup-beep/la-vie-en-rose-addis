@@ -68,13 +68,13 @@ export default function MenuPage() {
         />
         <div className="absolute inset-0" style={{ background: "rgba(28,28,28,0.88)" }} />
         <div className="relative z-10 text-center px-6">
-          <motion.span initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} className="text-6xl block mb-3" style={{ fontFamily: "var(--font-script), cursive", color: "#D46A7E" }}>
+          <motion.span animate={{ opacity: 1, y: 0 }} className="text-6xl block mb-3" style={{ fontFamily: "var(--font-script), cursive", color: "#D46A7E" }}>
             Our Menu
           </motion.span>
-          <motion.h1 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }} className="text-4xl md:text-5xl font-bold text-white mb-3" style={{ fontFamily: "var(--font-playfair), Georgia, serif" }}>
+          <motion.h1 animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }} className="text-4xl md:text-5xl font-bold text-white mb-3" style={{ fontFamily: "var(--font-playfair), Georgia, serif" }}>
             Crafted with Love & Expertise
           </motion.h1>
-          <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.4 }} className="text-white/50" style={{ fontFamily: "var(--font-cormorant), Georgia, serif", fontSize: "18px" }}>
+          <motion.p animate={{ opacity: 1 }} transition={{ delay: 0.4 }} className="text-white/50" style={{ fontFamily: "var(--font-cormorant), Georgia, serif", fontSize: "18px" }}>
             {menuItems.length} curated items across {categories.length - 1} categories
           </motion.p>
         </div>
@@ -184,14 +184,13 @@ export default function MenuPage() {
 
               <AnimatePresence mode="wait">
                 {filtered.length === 0 ? (
-                  <motion.div key="empty" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="text-center py-20">
+                  <motion.div key="empty" animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="text-center py-20">
                     <span className="text-5xl block mb-3" style={{ fontFamily: "var(--font-script), cursive", color: "#D46A7E" }}>Hmm...</span>
                     <p className="text-[#5C4033]/60" style={{ fontFamily: "var(--font-cormorant), Georgia, serif", fontSize: "18px" }}>No items found. Try a different search or filter.</p>
                   </motion.div>
                 ) : (
                   <motion.div
                     key={activeCategory + activeDietary + search}
-                    initial={{ opacity: 0, y: 16 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -16 }}
                     transition={{ duration: 0.35 }}
@@ -200,7 +199,6 @@ export default function MenuPage() {
                     {filtered.map((item, i) => (
                       <motion.article
                         key={item.id}
-                        initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: i * 0.04 }}
                         whileHover={{ y: -5 }}
@@ -263,7 +261,6 @@ export default function MenuPage() {
                                 {showAllergens === item.id && (
                                   <motion.p
                                     id={`allergens-${item.id}`}
-                                    initial={{ height: 0, opacity: 0 }}
                                     animate={{ height: "auto", opacity: 1 }}
                                     exit={{ height: 0, opacity: 0 }}
                                     className="text-[10px] text-[#5C4033]/60 mt-1 overflow-hidden"
