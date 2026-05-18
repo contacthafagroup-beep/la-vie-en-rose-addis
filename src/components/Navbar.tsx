@@ -43,7 +43,7 @@ export default function Navbar() {
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-          scrolled ? "bg-[#1C1C1C]/95 backdrop-blur-xl shadow-2xl py-3" : "bg-transparent py-5"
+          scrolled ? "bg-[#1C1C1C]/98 shadow-2xl py-3" : "bg-transparent py-5"
         }`}
         role="banner"
       >
